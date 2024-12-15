@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://bh0va3j81qc3b"]
+
+[ext_resource type="Texture2D" uid="uid://ckoib75xi4b23" path="res://Assets/monster1-idle2.png" id="1_2flyf"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_hgttq"]
+[ext_resource type="Script" path="res://Myhurtboxx.gd" id="3_rdpvg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrky5"]
+atlas = ExtResource("1_2flyf")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdshp"]
+atlas = ExtResource("1_2flyf")
+region = Rect2(18, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fy0k"]
+atlas = ExtResource("1_2flyf")
+region = Rect2(36, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6uq2"]
+atlas = ExtResource("1_2flyf")
+region = Rect2(0, 18, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcd5u"]
+atlas = ExtResource("1_2flyf")
+region = Rect2(36, 18, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0uhol"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrky5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdshp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fy0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6uq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcd5u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iuvfk"]
+radius = 8.0
+height = 24.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_hgttq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(4, 4)
+scale = Vector2(1.44118, 1.44118)
+sprite_frames = SubResource("SpriteFrames_0uhol")
+autoplay = "default"
+frame_progress = 0.215287
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="MyHurtBox" type="Node" parent="."]
+script = ExtResource("3_rdpvg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MyHurtBox"]
+position = Vector2(7, 5)
+shape = SubResource("CapsuleShape2D_iuvfk")
